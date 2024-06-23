@@ -1,0 +1,6 @@
+@Tabalho_so2_HostAddress = http://localhost:5137
+
+GET {{Tabalho_so2_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

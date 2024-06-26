@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using Trabalho_so2.Model;
 
 namespace Trabalho_so2.Services.Implementations
@@ -37,11 +38,11 @@ namespace Trabalho_so2.Services.Implementations
         {
             return new Person
             {
-                Id = IncrementAndGet(),
-                FirstName = "leandro",
-                LastName = "Costa",
-                Address = "Petropolis - Rio de janeiro",
-                Gender = "male"
+                id = IncrementAndGet(),
+                first_name = "leandro",
+                last_name = "Costa",
+                address = "Petropolis - Rio de janeiro",
+                gender = "male"
             };
         }
 
@@ -53,11 +54,11 @@ namespace Trabalho_so2.Services.Implementations
         {
             return new Person
             {
-                Id = IncrementAndGet(),
-                FirstName = "Person Name" + i,
-                LastName = "Person LastName" + i,
-                Address = "Some Addres" + i,
-                Gender = "male"
+                id = IncrementAndGet(),
+                first_name = "Person Name" + i,
+                last_name = "Person LastName" + i,
+                address = "Some Addres" + i,
+                gender = "male"
             };
         }
 
@@ -65,5 +66,7 @@ namespace Trabalho_so2.Services.Implementations
         {
             return Interlocked.Increment(ref count);
         }
+
+       
     }
 }

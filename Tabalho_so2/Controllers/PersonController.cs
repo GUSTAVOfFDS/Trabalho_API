@@ -11,7 +11,7 @@ using Trabalho_so2.Services;
 namespace Trabalho_so2.Controllers
 {
     [ApiController]
-    [Route("[api/controller]")]
+    [Route("api/[controller]")]
     public class PersonController : ControllerBase
     {
         private readonly ILogger<PersonController> _logger;
@@ -37,7 +37,7 @@ namespace Trabalho_so2.Controllers
 
                var person = _personService.FindById(id);
             if(person == null) return NotFound();
-            return Ok();
+            return Ok(person);
         }
         [HttpPost]
         public IActionResult Post([FromBody] Person person)
@@ -57,17 +57,18 @@ namespace Trabalho_so2.Controllers
             if (person == null) return BadRequest();
             return Ok(_personService.Update(person));
 
-            [HttpDelete]
+           /* [HttpDelete]
             public IActionResult Delete(long id)
             {
 
 
-            _personService.Delete(id);
-            
-            return NoContent();
-        }
+                _personService.Delete(id);
+
+                return NoContent();
+        }*/
 
 
 
     }
+}
 }

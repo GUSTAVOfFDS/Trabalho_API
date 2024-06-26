@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using MySqlConnector;
+using System.Net;
 
 namespace Trabalho_so2.Model.Context
 {
@@ -11,5 +12,6 @@ namespace Trabalho_so2.Model.Context
         }
 
         public DbSet<Person> Persons { get; set; }
+       
     }
 }

@@ -1,27 +1,31 @@
-using Trabalho_so2.Services.Implementations;
-using Trabalho_so2.Services;
+using Trabalho_so2.Business.Implementations;
+using Trabalho_so2.Business;
 using Trabalho_so2.Model.Context;
 using Microsoft.EntityFrameworkCore;
+using Trabalho_so2.Repository.Implementations;
+using Trabalho_so2.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-var connection = Configuration["MySQLConnection:MySQLConnetionString"];
-builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, new MySqlServerVersion(new Version(8,4,0) )));
+
+var connection = builder.Configuration.GetConnectionString("MySQLConnectionString");
 
 
+builder.Services.AddDbContext<MySQLContext>(options =>
+    options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 23))));
 
-builder.Services.AddScoped<IPersonService, PersonServiceImplementation>();
- 
+// Add API versioning
 
+
+// Register repositories and business services
+builder.Services.AddScoped<IPersonRepository, PersonRepositoryImplementations>();
+builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementations>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

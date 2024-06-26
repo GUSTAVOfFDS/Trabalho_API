@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,28 +7,30 @@ using System.Linq;
 using System.Security;
 using System.Threading.Tasks;
 using Trabalho_so2.Model;
-using Trabalho_so2.Services;
+using Trabalho_so2.Business;
 
 namespace Trabalho_so2.Controllers
 {
+    
     [ApiController]
     [Route("api/[controller]")]
     public class PersonController : ControllerBase
     {
         private readonly ILogger<PersonController> _logger;
-        private IPersonService _personService;
-        public PersonController(ILogger<PersonController> logger, IPersonService personService)
+        private IPersonBusiness _personService;
+        public PersonController(ILogger<PersonController> logger, IPersonBusiness personBusiness)
         {
             _logger = logger;
-            _personService = personService;
+            _personService = personBusiness;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-      
 
-            return Ok(_personService.FindAll());
+            var person = _personService.FindAll();
+            return Ok(person);
+
         }
 
         [HttpGet("{id}")]
@@ -57,18 +60,19 @@ namespace Trabalho_so2.Controllers
             if (person == null) return BadRequest();
             return Ok(_personService.Update(person));
 
-           /* [HttpDelete]
-            public IActionResult Delete(long id)
-            {
-
-
-                _personService.Delete(id);
-
-                return NoContent();
-        }*/
 
 
 
+
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+
+
+            _personService.Delete(id);
+
+            return NoContent();
+        }
     }
-}
 }

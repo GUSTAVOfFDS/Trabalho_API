@@ -1,23 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-
-
-
-
 namespace Trabalho_so2.Model
 {
     [Table("person")]
-    [Table("address")]
-
     public class Person
     {
-
         [Column("id")]
+        public long Id { get; set; }
 
-        public long id { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public string address { get; set; }
-        public string gender { get; set; }
+        [Column("first_name")]
+        public string FirstName { get; set; }
+
+        [Column("last_name")]
+        public string LastName { get; set; }
+
+        [Column("gender")]
+        public string Gender { get; set; }
+
+        [Column("address")]
+        public string Address { get; set; }
+
+       
     }
 }
